@@ -6,6 +6,7 @@ import { LitElement, html, css } from 'lit';
  * 2. Get your CSS rescoped as needed to work here
  */
 
+
 export class MyCard extends LitElement {
 
   static get tag() {
@@ -18,17 +19,33 @@ export class MyCard extends LitElement {
     this.image='';
     this.description= '';
     this.backgroundColor= 'red';
+    this.fancy= false;
+    this.detailLink = "https://hax.psu.edu";
   }
 
   static get styles() {
     return css`
+
+:host([fancy]) .card {
+ 
+/* control block inline - block */
+display: inline-block;
+}
+
+
+
+
+
       .card {
   background-color: red;
   width: 100%;  
   max-width: 360px;
   padding: 5px;
   border: 2px solid black;
-}
+  min-height: 500px;
+  position: relative;
+  height: 600px;
+}   
 
 .fancy {
   background-color: orange;
@@ -65,6 +82,7 @@ export class MyCard extends LitElement {
 .description p {
   text-align: center;
   padding: 20px;
+  color: white;
 }
 
 .button {
@@ -83,6 +101,20 @@ export class MyCard extends LitElement {
   border-width: 2px;
   font-size: 18px;
 }
+
+summary{
+  padding: 10px 20px;
+ 
+ 
+}
+
+slot{
+  color: white;
+  text-align: center;
+}
+
+
+
 
 @media (min-width: 500px) and (max-width: 800px) {
   .button {
@@ -115,26 +147,27 @@ export class MyCard extends LitElement {
   }
 
   render() {
-    return html
-    `<div class="controller">
-   <button @click=${this.cloneNode}>Clone Card</button>
-   <button @click=${this.changeName}>Change name</button>
-   <button @click=${this.changePicture}>Change picture</button>
-   <button @click=${this.changeBackground}>Change background</button>
-   <button @click=${this.deleteCard}>Delete Card</button>
+    return html`
+    <div class="controller">
+   
 <div class="card" style="background-color: ${this.backgroundColor}">
 <div class="title">
   <h1>${this.title}</h1>
   <img src="${this.image}">
+  <p class= "Description"><slot>${this.description}</slot></p>
 </div>
 
-<div class="description">
-  <p>${this.description}</p>
-</div>
+<details ?open="${this.fancy}" @toggle="${this.openChanged}">
+  <summary>Details</summary>
+  <div>
+  <a href="${this.detailLink}" target="_blank"> 
+  <button class="btn">
+  <em>Link for more info </em>
+  </button>
+  </a>
+  </div>
+</details>
 
-<div class="button">
-  <a href="https://hax.psu.edu">Details</a>
-</div>
 </div>
 </div>
 
@@ -143,10 +176,12 @@ export class MyCard extends LitElement {
 
   static get properties() {
     return {
+      fancy: {type: Boolean, reflect: true},
       title: { type: String },
       image: {type: String},
       description: {type: String},
       backgroundColor: {type: String},
+    
     };
   }
 }

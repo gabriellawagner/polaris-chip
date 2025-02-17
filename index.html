@@ -32,39 +32,48 @@
   <polaris-chip title="Grants and donations"></polaris-chip>
 
   <h1>my-card</h1>
+<button>Toggle</button>
+<script>
+  const button = document.querySelector('button');
+  button.addEventListener('click', () => {
+    const card = document.querySelector('my-card');
+    card.fancy = !card.fancy;
+  });
+</script>
+
   <my-card
     title="Motion Picture Soundtrack"
     image="https://t2.genius.com/unsafe/504x504/https%3A%2F%2Fimages.genius.com%2F8a292b09dac06fcc2b100b6a8d47b04c.1000x1000x1.png"
-    description="This song is by Radiohead, released in 2000 on the album 'Kid A'."
     backgroundColor="red">
+    <p> This song is by Radiohead, released in 2000 on the album   <em> 'Kid A'</em></p>
   </my-card>
 
   <my-card
     title="Australian Labradoodle"
     image="https://australianlabradoodle.eu/wp-content/uploads/2019/01/sesja6.jpg"
-    description="Australian Labradoodles are a cross between a Labrador Retriever, Poodle, and Cocker Spaniel."
     backgroundColor="blue">
+    <p> Australian Labradoodles are a cross between a Labrador Retriever, Poodle, and Cocker Spaniel.</p>
   </my-card>
 
   <my-card
     title="Bahamas"
     image="https://finduslost.com/wp-content/uploads/2018/05/Nassau-Travel-Guide-Bahamas-Paradise-Island-Find-Us-Lost-0768-1536x1024.jpg"
-    description="Theres nothing like the feeling of flying into a destination with clear blue water on all sides."
     backgroundColor="white">
+    <p> Theres nothing like the feeling of flying into a destination with clear blue water on all sides.</p>
   </my-card>
 
   <my-card
     title="Ireland"
     image="https://www.ruesaintpatrick.com/cdn/shop/articles/AdobeStock_126547734.jpeg?v=1519926946"
-    description="Breathtaking sight of Cliffs of Moher"
     backgroundColor="green">
+    <p> Green</p>
   </my-card>
 
   <my-card
     title="Eagles"
     image="https://whyy.org/wp-content/uploads/2024/09/saquon-barkley-philadelphia-eagles-atlanta-falcons-091724-768x512.jpg"
-    description="Philadelphia Eagles"
     backgroundColor="green">
+    <p>Philadelphia Eagles</p>
   </my-card>
 
 
