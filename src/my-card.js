@@ -27,9 +27,12 @@ export class MyCard extends LitElement {
     return css`
 
 :host([fancy]) .card {
- 
+ background-color: orange;
 /* control block inline - block */
-display: inline-block;
+
+}
+:host {
+  display: inline-block;
 }
 
 
@@ -43,8 +46,12 @@ display: inline-block;
   padding: 5px;
   border: 2px solid black;
   min-height: 500px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 500px;
   height: 600px;
+
 }   
 
 .fancy {
@@ -144,6 +151,17 @@ slot{
   }
 }
     `;
+  }
+
+  // put this anywhere on the MyCard class; just above render() is probably good
+  openChanged(e) {
+    console.log(e);
+    if (e.target.getAttribute('open') !== null) {
+      this.fancy = true;
+    } else {
+      this.fancy = false;
+    }
+    this.backgroundColor = this.fancy ? 'orange' : ''; 
   }
 
   render() {
